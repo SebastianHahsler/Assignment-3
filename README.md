@@ -1,5 +1,9 @@
 # Assignment-3
 RedBlack Tree for Sorting Data with Insertion and Search capabilities
+Some Data from the amazon-product-data.csv Creates errors which are categorized as follows
+Data Error (formatting errors typically found in the price)
+Incomplete errors (data is missing one or more required fields)
+Both of these are added to separate lists for which the user is prompted to print if they so wish.
 
 Search With 1 case of an ID that belongs to one of the input errors and thus not found
 <img width="1352" alt="Screenshot 2024-11-14 at 5 29 13 PM" src="https://github.com/user-attachments/assets/feae39d0-27b0-4c3c-84a7-c1402f329262">
