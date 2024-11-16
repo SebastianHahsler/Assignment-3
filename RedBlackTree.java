@@ -3,15 +3,15 @@ public class RedBlackTree {
     private final Node TNULL;
 
     public RedBlackTree() {
-        TNULL = new Node("","","",0.0, 0.0);
+        TNULL = new Node("","","","");
         TNULL.isRed = false; // TNULL is allways back
         root = TNULL;
     }
     public Node getTNULL() {
         return TNULL;
     }
-    public void insert(String productId, String name, String category, double minPrice, double maxPrice) {
-        Node node = new Node(productId, name, category, minPrice, maxPrice);
+    public void insert(String productId, String name, String category, String price) {
+        Node node = new Node(productId, name, category, price);
         node.left = TNULL;
         node.right = TNULL;
         node.parent = null;
@@ -33,14 +33,15 @@ public class RedBlackTree {
 
         node.parent = y;
         if (y == null) {
-            root = node; // node becomes the root
+            root = node; // Tree was empty, so node becomes the root
         } else if (node.productId.compareTo(y.productId) < 0) {
             y.left = node;
         } else {
             y.right = node;
         }
-        node.isRed = true; // New nodes are always red
-        balanceAfterInsert(node); // Rebalance
+
+        node.isRed = true; // New nodes are always red initially
+        balanceAfterInsert(node); // Rebalance the tree
     }
 
 
@@ -127,7 +128,7 @@ public class RedBlackTree {
             return searchHelper(this.root, productId);
         }
 
-        // Helper 
+        // Helper
         private Node searchHelper(Node node, String productId) {
             if (node == TNULL || node == null) { // returns TNULL or null if not found
                 return TNULL;
@@ -144,18 +145,13 @@ public class RedBlackTree {
 
 
     // display product details if found
-        public void searchProduct(String productId) {
-            Node result = search(productId);
-            if (result == TNULL) {
-                System.out.println("Product with ID " + productId + " not found.");
-            } else {
-                System.out.print("Product ID: " + result.productId + ", Name: " + result.name +
-                        ", Category: " + result.category + ", Price: $");
-                if (result.minPrice == result.maxPrice) {
-                    System.out.println(result.minPrice);
-                } else {
-                    System.out.println(result.minPrice + " - $" + result.maxPrice);
-                }
-            }
+    public void searchProduct(String productId) {
+        Node result = search(productId);
+        if (result == TNULL) {
+            System.out.println("Product with ID " + productId + " not found.");
+        } else {
+            System.out.println("Product ID: " + result.productId + ", Name: " + result.name +
+                    ", Category: " + result.category + ", Price: " + result.price);
         }
+    }
 }
